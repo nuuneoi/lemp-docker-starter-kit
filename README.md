@@ -16,23 +16,23 @@ Access through IP associated to your docker machine (generally it is 192.168.99.
 
 ## Docker Containers name
 
-**nginx**: lemp-nginx
+**nginx**: `lemp-nginx`
 
-**php7-fpm**: lemp-phpfpm
+**php7-fpm**: `lemp-phpfpm`
 
-**mysql**: lemp-mysql
+**mysql**: `lemp-mysql`
 
 ## Path
 
-**Path to place your website**: ./nginx/site
+**Path to place your website**: `./nginx/site`
 
-**Path to edit your nginx configuration**: ./nginx/conf
+**Path to edit your nginx configuration**: `./nginx/conf`
 
-**Path to add your custom mysql configuration**: ./mysql/conf
+**Path to add your custom mysql configuration**: `./mysql/conf`
 
-**Path to edit your php7-fpm configuration**: ./php7fpm/conf
+**Path to edit your php7-fpm configuration**: `./php7fpm/conf`
 
-## MySQL Root Password
+## MySQL Default Root Password
 
 `caloriesblahblah`
 
