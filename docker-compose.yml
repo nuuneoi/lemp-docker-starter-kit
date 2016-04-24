@@ -1,0 +1,48 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1.9.12
+    # or use image below if you need the nginx with Lua supported
+    #image: nuuneoi/nginx-extras
+    container_name: lemp-nginx
+    ports:
+     - "80:80"
+    volumes:
+     - ./nginx/site:/usr/share/nginx/html
+     - ./nginx/conf:/etc/nginx:ro
+     - ./nginx/log:/var/log/nginx
+    depends_on:
+     - phpfpm
+  phpfpm:
+    image: nuuneoi/php7-fpm
+    container_name: lemp-phpfpm
+    # Uncomment lines below if you want to make php7-fpm be available outside the bridge
+    #ports:
+    # - "9000:9000" 
+    volumes:
+     - ./php7fpm/conf/cli/php.ini:/etc/php/7.0/cli/php.ini
+     - ./php7fpm/conf/fpm/php.ini:/etc/php/7.0/fpm/php.ini
+     - ./php7fpm/conf/fpm/php-fpm.conf:/etc/php/7.0/cli/php-fpm.conf
+     - ./nginx/site:/usr/share/nginx/html
+  mysql-data:
+    image: busybox
+    container_name: lemp-mysql-data
+    volumes:
+     - ./mysql/storage:/var/lib/mysql
+  mysql:
+    image: nuuneoi/mysql:5.7.11
+    container_name: lemp-mysql
+    # Uncomment lines below if you want to make mysql server be available outside the bridge
+    #ports:
+    # - "3306:3306"
+    volumes_from:
+     - mysql-data
+    volumes:
+     - ./mysql/conf:/etc/mysql/conf.d
+     - ./mysql/log:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: caloriesblahblah
+
+networks:
+  default:
+
